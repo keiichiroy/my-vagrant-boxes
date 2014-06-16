@@ -15,6 +15,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "512"]
   end
   
+  # network config
+  config.vm.network :private_network, type: "dhcp"
+  config.vm.hostname = "webserver"
+    
   config.omnibus.chef_version = :latest
   config.vm.provision :chef_solo do |chef|
     chef.custom_config_path = "Vagrantfile.chef"
